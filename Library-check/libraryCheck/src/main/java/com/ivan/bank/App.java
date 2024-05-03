@@ -1,13 +1,9 @@
 package com.ivan.bank;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import com.ivan.bank.GUI.*;
+
+public class App {
+    public static void main( String[] args ) {
+        new start();
     }
 }

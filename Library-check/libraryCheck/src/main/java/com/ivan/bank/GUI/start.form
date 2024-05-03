@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.ivan.bank.GUI.start">
-  <grid id="27dc6" row-count="1" column-count="1" layout-manager="GridLayoutManager">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="selectPage" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
-      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+      <xy x="20" y="20" width="455" height="184"/>
     </constraints>
-    <properties/>
-    <border type="none"/>
-    <children/>
+    <properties>
+      <toolTipText value="Select Page"/>
+    </properties>
+    <border type="none" title="Select Page" title-justification="2">
+      <font/>
+    </border>
+    <children>
+      <component id="86f40" class="javax.swing.JButton" binding="student">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="25" left="100" bottom="5" right="100" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="I am student"/>
+        </properties>
+      </component>
+      <component id="34c2b" class="javax.swing.JButton" binding="administrator">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="5" left="100" bottom="5" right="100" weightx="0.0" weighty="0.0" ipadx="100"/>
+        </constraints>
+        <properties>
+          <text value="I am administrator"/>
+        </properties>
+      </component>
+      <component id="e48f1" class="javax.swing.JButton" binding="register">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="5" left="100" bottom="25" right="100" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Register"/>
+        </properties>
+      </component>
+    </children>
   </grid>
 </form>
