@@ -61,7 +61,5 @@ public class registerAccount {
         new registerAccount();
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
+
 }
