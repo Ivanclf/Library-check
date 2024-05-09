@@ -6,9 +6,7 @@ import java.io.*;
 import java.util.*;
 
 public class book {
-    public enum info{
-        id, amount, name, author, publisher
-    }
+
     private final Map<info, Object> bookData = new HashMap<>();
 
     public book(int id, int amount, String name, ArrayList<String> author, String publisher) {
