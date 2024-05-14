@@ -1,6 +1,6 @@
 package com.ivan.bank.GUI.students;
 
-import com.ivan.bank.GUI.search;
+import com.ivan.bank.GUI.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

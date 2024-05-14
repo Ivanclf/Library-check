@@ -42,8 +42,4 @@ public class studentsLogin {
     public static void main(String[] args) {
         new studentsLogin();
     }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }
