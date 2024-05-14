@@ -1,14 +1,13 @@
-package com.ivan.bank.GUI.administrators;
-
-import com.ivan.bank.GUI.search;
+package com.ivan.bank.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import com.ivan.bank.GUI.search.mode;
 
-public class operator {
+public class operatorAdminisrators {
     private JLabel tipDo;
     private JPanel operator;
     private JButton search;
@@ -18,7 +17,7 @@ public class operator {
     private JList<String> bookSelect;
     private JLabel tipView;
     private JScrollPane scrollPane;
-    public operator(){
+    public operatorAdminisrators(){
         JFrame frame = new JFrame("operator");
         frame.setContentPane(this.operator);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,25 +27,25 @@ public class operator {
         search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new search(com.ivan.bank.GUI.search.mode.SEARCH);
+                new search(mode.VIEW);
             }
         });
         addBook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new search(com.ivan.bank.GUI.search.mode.ADD);
+                new addInfo();
             }
         });
         declineBook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new search(com.ivan.bank.GUI.search.mode.DECLINE);
+                new search(mode.DECLINE);
             }
         });
         modifyData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new search(com.ivan.bank.GUI.search.mode.CHANGE);
+                new search(mode.CHANGE);
             }
         });
         bookSelect.addMouseListener(new MouseAdapter() {
@@ -57,6 +56,6 @@ public class operator {
         });
     }
     public static void main(String[] args) {
-        new operator();
+        new operatorAdminisrators();
     }
 }

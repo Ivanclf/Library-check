@@ -1,13 +1,10 @@
 package com.ivan.bank;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ivan.bank.Book.info;
 
 import java.io.*;
 import java.util.*;
-
-import static java.lang.System.in;
 
 public class searchOperate {
     private final Map<info, Object> book = new HashMap<>();
@@ -37,7 +34,7 @@ public class searchOperate {
         }
     }
 
-    public ArrayList<String> readJson() {
+    public ArrayList<String> readJsonAll() {
         File file = new File(path);
         var om = new ObjectMapper();
         File[] fs = file.listFiles();
@@ -60,7 +57,16 @@ public class searchOperate {
         }
         return result;
     }
-
+    public Map<String, Object> readJsonOne(int id){
+        File file = new File(path + id + ".json");
+        var om = new ObjectMapper();
+        try {
+            fileDocument = om.readValue(file, Map.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fileDocument;
+    }
     private boolean isEqual(Map<String, Object> temp) {
         if (book.containsKey(info.id)) {
             if (!temp.get("id").toString().matches("(.*)" + book.get(info.id).toString() + "(.*)")) {
@@ -106,5 +112,14 @@ public class searchOperate {
             temp.close();
             return (Integer) fileDocument.get("amount");
         }
+    }
+    public boolean delete(int index) throws Exception{
+        idCheck.remove(index);
+        var file = new File(path + "/" + idCheck.get(index) + ".json");
+        return file.delete();
+    }
+
+    public ArrayList<Integer> getIdCheck() {
+        return idCheck;
     }
 }

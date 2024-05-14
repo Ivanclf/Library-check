@@ -1,5 +1,5 @@
 package com.ivan.bank.Accounts;
 
 public enum info{
-    id, password, name
+    id, password, name, borrow
 }

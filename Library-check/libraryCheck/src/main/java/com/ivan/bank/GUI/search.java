@@ -6,15 +6,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import com.ivan.bank.*;
+
+import static com.ivan.bank.App.isNoInput;
 
 public class search {
 
     public enum mode {
         ADD, BORROW, CHANGE, DECLINE, RETURN, SEARCH, VIEW
     }
+
     private JPanel search;
 
     private JLabel tipId;
@@ -32,13 +34,9 @@ public class search {
     private JLabel tipResult;
     private JScrollPane scrollPane;
     private int id = 0;
-    private String name;
+    private String name, publisher;
     private ArrayList<String> author = new ArrayList<>();
-    private String publisher;
-    boolean isIdException;
-    boolean isNameException;
-    boolean isAuthorException;
-    boolean isPublisherException;
+    boolean isIdException, isNameException, isAuthorException, isPublisherException;
     searchOperate so;
 
     public search(mode mode) {
@@ -60,7 +58,7 @@ public class search {
                 listResult.setModel(listModel);
                 try {
                     id = Integer.parseInt(idInput.getText());
-                }catch (NumberFormatException ea){
+                } catch (NumberFormatException ea) {
                     isIdException = true;
                 }
 
@@ -74,24 +72,20 @@ public class search {
                 String[] temp = authorInput.getText().split(" ");
                 try {
                     isNoInput(temp);
-                } catch (NoInputException ec){
+                } catch (NoInputException ec) {
                     isAuthorException = true;
-                } finally {
-                    if (!isAuthorException) {
-                        author.addAll(Arrays.asList(temp));
-                    }
                 }
 
                 publisher = publisherInput.getText();
                 try {
                     isNoInput(publisher);
-                } catch (NoInputException ed){
+                } catch (NoInputException ed) {
                     isPublisherException = true;
                 }
 
                 so = new searchOperate(id, name, author, publisher);
                 so.setJudge(isIdException, isNameException, isAuthorException, isPublisherException);
-                ArrayList<String> result = so.readJson();
+                ArrayList<String> result = so.readJsonAll();
 
                 for (String s : result) {
                     listModel.addElement(s);
@@ -109,48 +103,52 @@ public class search {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(e.getClickCount() == 2){
-                    switch (mode){
+                if (e.getClickCount() == 2) {
+                    int index = listResult.locationToIndex(e.getPoint());
+                    int id = so.getIdCheck().get(index);
+                    switch (mode) {
                         case SEARCH:
-                            JOptionPane.showMessageDialog(null, "Only for searching", "Title",JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Only for searching", "Title", JOptionPane.WARNING_MESSAGE);
                             break;
                         case BORROW:
-                            int index = listResult.locationToIndex(e.getPoint());
-                            try {
-                                if(so.isAvailable (index) == null){
-                                    JOptionPane.showMessageDialog(null, "There have been no book to be borrowed!", "Title",JOptionPane.WARNING_MESSAGE);
 
-                                }
-                                else {
+                            try {
+                                if (so.isAvailable(index) == null) {
+                                    JOptionPane.showMessageDialog(null, "There have been no book to be borrowed!", "Title", JOptionPane.WARNING_MESSAGE);
+                                } else {
                                     JOptionPane.showMessageDialog(null, "Borrow success!");
                                 }
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
                             break;
-                        case RETURN:break;
-                        case ADD:break;
-                        case DECLINE:break;
-                        case CHANGE:break;
-                        case VIEW:break;
+                        case DECLINE:
+                            var option = JOptionPane.showConfirmDialog(null, "Delete?", "Delete?", JOptionPane.YES_NO_OPTION);
+                            if (option == 0) {
+                                try {
+                                    so.delete(index);
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                                listModel.remove(index);
+                                listResult.repaint();
+                            }
+                            break;
+                        case CHANGE:
+                            new addInfo(so.readJsonOne(id));
+                            break;
+                        case VIEW:
+                            id = so.getIdCheck().get(index);
+                            new view(so.readJsonOne(id));
+                            break;
+                        default:
+                            System.out.println("Unexpected value: " + mode);
                     }
                 }
             }
         });
-
     }
-
     public static void main(String[] args) {
-        new search(mode.SEARCH);
-    }
-    private void isNoInput(String s) throws NoInputException{
-        if(s == null || s.isEmpty()){
-            throw new NoInputException("This string is empty!");
-        }
-    }
-    private void isNoInput(String[] s) throws NoInputException{
-        if(s == null || s[0].isEmpty()){
-            throw new NoInputException("This string is empty!");
-        }
+        new search(mode.DECLINE);
     }
 }

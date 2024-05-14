@@ -1,6 +1,6 @@
 package com.ivan.bank.GUI.login_register;
 
-import com.ivan.bank.GUI.administrators.operator;
+import com.ivan.bank.GUI.operatorAdminisrators;
 import com.ivan.bank.GUI.start;
 
 import javax.swing.*;
@@ -26,7 +26,7 @@ public class administratorsLogin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new operator();
+                new operatorAdminisrators();
             }
         });
         cancel.addActionListener(new ActionListener() {

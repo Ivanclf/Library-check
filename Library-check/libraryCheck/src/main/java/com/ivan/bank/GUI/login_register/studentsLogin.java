@@ -1,7 +1,7 @@
 package com.ivan.bank.GUI.login_register;
 
 import com.ivan.bank.GUI.start;
-import com.ivan.bank.GUI.students.operator;
+import com.ivan.bank.GUI.operatorStudents;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +26,7 @@ public class studentsLogin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new operator();
+                new operatorStudents();
             }
         });
         cancel.addActionListener(new ActionListener() {
