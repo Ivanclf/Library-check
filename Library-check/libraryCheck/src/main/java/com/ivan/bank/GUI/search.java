@@ -116,6 +116,7 @@ public class search {
                                 if (so.isAvailable(index) == null) {
                                     JOptionPane.showMessageDialog(null, "There have been no book to be borrowed!", "Title", JOptionPane.WARNING_MESSAGE);
                                 } else {
+
                                     JOptionPane.showMessageDialog(null, "Borrow success!");
                                 }
                             } catch (Exception ex) {

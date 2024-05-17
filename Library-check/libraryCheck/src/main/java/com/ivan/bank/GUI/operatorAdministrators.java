@@ -7,7 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.ivan.bank.GUI.search.mode;
 
-public class operatorAdminisrators {
+public class operatorAdministrators {
     private JLabel tipDo;
     private JPanel operator;
     private JButton search;
@@ -17,7 +17,7 @@ public class operatorAdminisrators {
     private JList<String> bookSelect;
     private JLabel tipView;
     private JScrollPane scrollPane;
-    public operatorAdminisrators(){
+    public operatorAdministrators(){
         JFrame frame = new JFrame("operator");
         frame.setContentPane(this.operator);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,6 +56,6 @@ public class operatorAdminisrators {
         });
     }
     public static void main(String[] args) {
-        new operatorAdminisrators();
+        new operatorAdministrators();
     }
 }
